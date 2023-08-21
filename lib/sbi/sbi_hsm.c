@@ -212,6 +212,8 @@ static bool hsm_device_has_hart_secondary_boot(void)
 
 static int hsm_device_hart_start(u32 hartid, ulong saddr)
 {
+        u32 _current_hartid = current_hartid();
+	sbi_printf("%s: hart%d: saddr=0x%", __func__, _current_hartid, saddr);
 	if (hsm_dev && hsm_dev->hart_start)
 		return hsm_dev->hart_start(hartid, saddr);
 	return SBI_ENOTSUPP;
